@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Velocity - Carros Futuristas Exclusivos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #3a86ff;
+            margin: 15px auto 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3a86ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #2667cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #3a86ff;
+            color: #3a86ff;
+        }
+
+        .btn-outline:hover {
+            background: #3a86ff;
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #3a86ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: #3a86ff;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #3a86ff;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Destaques */
+        .featured-cars {
+            background-color: white;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .car-img img {
+            transform: scale(1.1);
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .car-specs span {
+            display: flex;
+            align-items: center;
+        }
+
+        .car-specs i {
+            margin-right: 5px;
+            color: #3a86ff;
+        }
+
+        .car-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3a86ff;
+            margin-bottom: 15px;
+        }
+
+        /* Sobre */
+        .about {
+            background-color: #f1faee;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text h2 {
+            text-align: left;
+        }
+
+        .about-text h2::after {
+            margin: 15px 0;
+        }
+
+        .about-features {
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #3a86ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Depoimentos */
+        .testimonials {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            color: white;
+        }
+
+        .testimonials h2::after {
+            background: white;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-slide {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -20px;
+            left: -15px;
+        }
+
+        .testimonial-text::after {
+            bottom: -40px;
+            right: -15px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .author-info p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .slider-controls {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Contato */
+        .contact {
+            background-color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #f1faee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #3a86ff;
+            font-size: 1.2rem;
+        }
+
+        .contact-text h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .contact-text p, .contact-text a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            color: #3a86ff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #f1faee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #3a86ff;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: #3a86ff;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: #1d3557;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: #3a86ff;
+        }
+
+        .footer-col p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: #3a86ff;
+            padding-left: 5px;
+        }
+
+        .footer-newsletter input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: #ffeb3b;
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text h2 {
+                text-align: center;
+            }
+
+            .about-text h2::after {
+                margin: 15px auto 0;
+            }
+
+            .about-img {
+                order: -1;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .contact-info {
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(0, 0, 0, 0.95);
+                transition: all 0.5s ease;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+            }
+
+            nav ul li {
+                margin: 20px 0;
+            }
+
+            header.scrolled nav {
+                top: 70px;
+                height: calc(100vh - 70px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .feature-icon {
+                margin-bottom: 15px;
+            }
+
+            .author-img {
+                margin-right: 10px;
+            }
+
+            .author-info h4 {
+                font-size: 1rem;
+            }
+
+            .author-info p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Nexus<span>Velocity</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#featured">Modelos</a></li>
+                    <li><a href="#about">Tecnologia</a></li>
+                    <li><a href="#testimonials">Experiência</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>O Futuro da Performance Automotiva</h1>
+                <p>Na Nexus Velocity, redefinimos a excelência com veículos exclusivos e tecnologia de ponta. Experimente o inesperado.</p>
+                <div class="hero-btns">
+                    <a href="#featured" class="btn">Explore os Modelos</a>
+                    <a href="#contact" class="btn btn-outline">Agendar Visita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <section class="featured-cars" id="featured">
+        <div class="container">
+            <h2>Nossa Linha Exclusiva</h2>
+            <div class="cars-grid">
+                <!-- Carro 1 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="NV-9 HyperGT">
+                    </div>
+                    <div class="car-info">
+                        <h3>NV-9 HyperGT</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 340 km/h</span>
+                            <span><i class="fas fa-bolt"></i> 680 HP</span>
+                            <span><i class="fas fa-charging-station"></i> Híbrido</span>
+                        </div>
+                        <div class="car-price">R$ 1.980.000</div>
+                        <a href="#" class="btn">Detalhes</a>
+                    </div>
+                </div>
+
+                <!-- Carro 2 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1583&q=80" alt="NV-X Spectre">
+                    </div>
+                    <div class="car-info">
+                        <h3>NV-X Spectre</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 320 km/h</span>
+                            <span><i class="fas fa-bolt"></i> 720 HP</span>
+                            <span><i class="fas fa-atom"></i> Elétrico</span>
+                        </div>
+                        <div class="car-price">R$ 2.450.000</div>
+                        <a href="#" class="btn">Detalhes</a>
+                    </div>
+                </div>
+
+                <!-- Carro 3 -->
+                <div class="car-card">
+                    <div class="car-img">
+                        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" alt="NV-R Phantom">
+                    </div>
+                    <div class="car-info">
+                        <h3>NV-R Phantom</h3>
+                        <div class="car-specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 350 km/h</span>
+                            <span><i class="fas fa-bolt"></i> 800 HP</span>
+                            <span><i class="fas fa-rocket"></i> Turbo</span>
+                        </div>
+                        <div class="car-price">R$ 3.150.000</div>
+                        <a href="#" class="btn">Detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Tecnologia Nexus</h2>
+                    <p>Desde 2020, a Nexus Velocity vem revolucionando o mercado automotivo com soluções inovadoras e design futurista. Nossa missão é transcender os limites da engenharia automotiva.</p>
+                    <p>Com centros de tecnologia em São Paulo e Berlim, desenvolvemos veículos que combinam desempenho extremo com sustentabilidade, sem comprometer o luxo e a exclusividade.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Inteligência Artificial</h4>
+                                <p>Sistemas de condução autônoma de última geração.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Sustentabilidade</h4>
+                                <p>Tecnologia híbrida e elétrica com eficiência energética.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Segurança</h4>
+                                <p>Sistemas de proteção avançados certificados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Centro Tecnológico Nexus">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>Experiências Nexus</h2>
+            <div class="testimonial-slider">
+                <!-- Depoimento 1 -->
+                <div class="testimonial-slide active">
+                    <div class="testimonial-text">
+                        <p>Adquiri meu NV-X Spectre e foi a melhor experiência automotiva da minha vida. A tecnologia de condução autônoma mudou completamente minha relação com carros de alto desempenho.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Eduardo">
+                        </div>
+                        <div class="author-info">
+                            <h4>Carlos Eduardo</h4>
+                            <p>Investidor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-text">
+                        <p>Como entusiasta de tecnologia, o NV-9 HyperGT superou todas minhas expectativas. A integração entre performance e IA é simplesmente revolucionária.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Ricardo Almeida">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ricardo Almeida</h4>
+                            <p>CEO de Tech Startup</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-text">
+                        <p>O serviço personalizado da Nexus Velocity é incomparável. Me guiaram em cada detalhe da configuração do meu NV-R Phantom, criando um veículo único para minhas necessidades.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Carolina">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Carolina</h4>
+                            <p>Executiva</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Entre no Mundo Nexus</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Agende uma Visita</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Nexus Experience Center</h4>
+                                <p>Av. das Inovações, 1500<br>São Paulo - SP</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Telefone</h4>
+                                <p><a href="tel:+5511999998888">(11) 99999-8888</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:experience@nexusvelocity.com">experience@nexusvelocity.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Siga a Nexus</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="formContato">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interesse">Modelo de Interesse</label>
+                            <select id="interesse" name="interesse" required>
+                                <option value="">Selecione...</option>
+                                <option value="NV-9">NV-9 HyperGT</option>
+                                <option value="NV-X">NV-X Spectre</option>
+                                <option value="NV-R">NV-R Phantom</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" placeholder="Conte-nos sobre suas expectativas..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Solicitar Contato</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Nexus Velocity</h3>
+                    <p>Redefinindo os limites da engenharia automotiva com tecnologia, desempenho e design exclusivos.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#featured">Modelos</a></li>
+                        <li><a href="#about">Tecnologia</a></li>
+                        <li><a href="#testimonials">Experiências</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Centros Nexus</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">São Paulo</a></li>
+                        <li><a href="#">Rio de Janeiro</a></li>
+                        <li><a href="#">Belo Horizonte</a></li>
+                        <li><a href="#">Porto Alegre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Nexus Insider</h3>
+                    <p>Receba atualizações exclusivas sobre novos lançamentos e tecnologia Nexus.</p>
+                    <form class="footer-newsletter">
+                        <input type="email" placeholder="Seu email" required>
+                        <button type="submit" class="btn">Assinar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p>⚠ ESTE É UM SITE FICTÍCIO CRIADO PARA FINS DEMONSTRATIVOS. TODOS OS MODELOS, IMAGENS E ESPECIFICAÇÕES SÃO MERAMENTE ILUSTRATIVOS.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Nexus Velocity. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = nav.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fechar menu ao clicar em um link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Testimonial slider
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+
+        // Auto slide change
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 5000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('formContato');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            alert('Obrigado por seu interesse na Nexus Velocity! Nossa equipe entrará em contato em breve.');
+            contactForm.reset();
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.car-card, .about-img, .about-text, .contact-info, .contact-form');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.car-card, .about-img, .about-text, .contact-info, .contact-form');
+            elementsToAnimate.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Trigger first check
+            animateOnScroll();
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
